@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importar Dados Excel</title>
     <style>
-        /* ... (seu CSS permanece inalterado) ... */
         body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
         .container { background-color: #f4f4f4; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 80%; max-width: 700px; text-align: center; }
         h1 { color: #333; }
@@ -16,8 +15,27 @@
         input[type="file"] { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; display: block; width: 100%; box-sizing: border-box;}
         
         .botoes-acao { display: flex; flex-direction: column; gap: 10px; }
-        .botoes-acao button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; width: 100%; }
         
+        /* Estilo base do botão */
+        .botoes-acao button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; width: 100%; }
+        
+        /* Estilo para o link de download disfarçado de botão */
+        .botoes-acao a.btn-download { 
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+            color: white; 
+            width: 100%;
+            background-color: #ffc107; /* Amarelo/Aviso */
+        }
+        .botoes-acao a.btn-download:hover { 
+            background-color: #e0a800;
+        }
+
         #btnImportar { background-color: #007bff; color: white; }
         #btnImportar:hover { background-color: #0056b3; }
 
@@ -28,7 +46,6 @@
     </style>
     
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-    
     <script src="script.js"></script>
 </head>
 <body>
@@ -42,11 +59,16 @@
             </strong>
         </div>
         
-        <input type="file" id="arquivoExcel" accept=".xlsx, .xls">
-        
         <div class="botoes-acao">
-            <button id="btnImportar" onclick="importarDados()">1. Importar e Consultar</button>
-            <button id="btnIrConsulta" onclick="window.location.href='consulta.html'">2. Ir para Consulta (Dados já importados)</button>
+            <a href="https://everton-alt.github.io/CD/PLANILHA.xlsx" download="PLANILHA_MODELO.xlsx" class="btn-download">
+                1. Baixar Planilha Modelo (.XLSX)
+            </a>
+
+            <input type="file" id="arquivoExcel" accept=".xlsx, .xls">
+            
+            <button id="btnImportar" onclick="importarDados()">2. Importar Planilha e Ir para Consulta</button>
+            
+            <button id="btnIrConsulta" onclick="window.location.href='consulta.html'">3. Ir para Consulta (Dados já importados)</button>
         </div>
         
         <div id="mensagem"></div>
