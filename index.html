@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar Dados Excel</title>
+    <style>
+        /* ... (seu CSS permanece inalterado) ... */
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { background-color: #f4f4f4; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 80%; max-width: 700px; text-align: center; }
+        h1 { color: #333; }
+        
+        .instrucao-cabecalho { margin-bottom: 20px; padding: 10px; border: 1px dashed #aaa; background-color: #e9ecef; border-radius: 4px; font-size: 0.9em; text-align: left; }
+        .instrucao-cabecalho strong { display: block; margin-top: 5px; font-size: 1.1em; line-height: 1.6; }
+        
+        input[type="file"] { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; display: block; width: 100%; box-sizing: border-box;}
+        
+        .botoes-acao { display: flex; flex-direction: column; gap: 10px; }
+        .botoes-acao button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; width: 100%; }
+        
+        #btnImportar { background-color: #007bff; color: white; }
+        #btnImportar:hover { background-color: #0056b3; }
+
+        #btnIrConsulta { background-color: #28a745; color: white; }
+        #btnIrConsulta:hover { background-color: #1e7e34; }
+        
+        #mensagem { margin-top: 15px; font-weight: bold; }
+    </style>
+    
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Importação de Dados da Planilha</h1>
+        
+        <div class="instrucao-cabecalho">
+            <p><strong>Atenção:</strong> A **primeira linha** da sua planilha Excel deve conter exatamente estes cabeçalhos:</p>
+            <strong>
+            Pedido, Item, Código, Descritivo, Quantidade, Un, Lote, Data Lan, Nota Fiscal, Valor, CC, ORDEM, PEP, Criado Por, Acompanhamento
+            </strong>
+        </div>
+        
+        <input type="file" id="arquivoExcel" accept=".xlsx, .xls">
+        
+        <div class="botoes-acao">
+            <button id="btnImportar" onclick="importarDados()">1. Importar e Consultar</button>
+            <button id="btnIrConsulta" onclick="window.location.href='consulta.html'">2. Ir para Consulta (Dados já importados)</button>
+        </div>
+        
+        <div id="mensagem"></div>
+    </div>
+</body>
+</html>

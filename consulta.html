@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta e Filtragem de Dados</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        .top-actions { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        
+        .top-actions button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; }
+        
+        /* Botões de navegação globais */
+        #btnVoltarIndex { background-color: #6c757d; }
+        #btnVoltarIndex:hover { background-color: #5a6268; }
+        #btnIrDetalhe { background-color: #17a2b8; }
+        #btnIrDetalhe:hover { background-color: #138496; }
+        
+        #filtros { padding: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        #filtros label { font-weight: bold; }
+        #filtros input, #filtros select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; flex-grow: 1; min-width: 150px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        
+        /* Estilos dos botões na coluna AÇÕES */
+        .btn-excluir { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px; }
+        .btn-excluir:hover { background-color: #c82333; }
+        .btn-enviar { background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+        .btn-enviar:hover { background-color: #0056b3; }
+
+        #status { margin-top: 10px; font-weight: bold; }
+        th:last-child { min-width: 150px; } 
+    </style>
+</head>
+<body onload="inicializarConsulta()"> 
+    <div class="top-actions">
+        <h1>Consulta de Dados Importados</h1>
+        
+        <div>
+            <button id="btnVoltarIndex" onclick="window.location.href='index.html'">Voltar para Importação (Index)</button>
+            <button id="btnIrDetalhe" onclick="irParaDetalhe()">Ir para Item Enviado (Detalhe)</button>
+        </div>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="filtros">
+        <h3>Filtros:</h3>
+        <label for="filtroCodigo">Código:</label>
+        <input type="text" id="filtroCodigo" placeholder="Digite o Código">
+        
+        <label for="filtroPedido">Pedido:</label>
+        <input type="text" id="filtroPedido" placeholder="Digite o Pedido">
+        
+        <label for="filtroNota">Nota Fiscal:</label>
+        <input type="text" id="filtroNota" placeholder="Digite a Nota Fiscal">
+        
+        <label for="filtroData">Data Lan:</label>
+        <input type="text" id="filtroData" placeholder="Digite a Data (Ex: 01/01/2023)">
+        
+        <button onclick="aplicarFiltros()">Aplicar Filtros</button>
+        <button onclick="limparFiltros()">Limpar Filtros</button>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table id="tabelaDados">
+            <thead>
+                <tr>
+                    <th>PEDIDO</th><th>ITEM</th><th>CÓDIGO</th><th>DESCRITIVO</th>
+                    <th>QUANTIDADE</th><th>UN</th><th>LOTE</th><th>DATA LAN</th>
+                    <th>NOTA FISCAL</th><th>VALOR</th><th>CC</th><th>ORDEM</th>
+                    <th>PEP</th><th>CRIADO POR</th><th>ACOMPANHAMENTO</th><th>AÇÕES</th> 
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

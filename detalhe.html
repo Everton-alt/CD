@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itens Enviados (Detalhe)</title>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <style>
+        /* INÍCIO DO CSS IDÊNTICO AO CONSULTA.HTML */
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        .top-actions { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        
+        .top-actions button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; color: white; }
+        
+        /* Botões de navegação globais */
+        #btnVoltarIndex { background-color: #6c757d; }
+        #btnVoltarIndex:hover { background-color: #5a6268; }
+        #btnVoltarConsulta { background-color: #17a2b8; }
+        #btnVoltarConsulta:hover { background-color: #138496; }
+
+        /* Botões específicos do Detalhe */
+        #btnExportarItem { background-color: #28a745; }
+        #btnExportarItem:hover { background-color: #1e7e34; }
+        #btnLimparVisualizacao { background-color: #dc3545; }
+        #btnLimparVisualizacao:hover { background-color: #c82333; }
+        #btnLimparVisualizacao:disabled { background-color: #f0f0f0; color: #aaa; cursor: not-allowed; } 
+        
+        /* Estilo para o botão 'Apagar' dentro da tabela (replicando 'btn-excluir' da consulta) */
+        .btn-apagar-visualizacao { background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+
+        /* Estilo da tabela: idêntico ao da consulta */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        
+        th:last-child { min-width: 150px; } /* Ajusta a largura da coluna AÇÕES, igual à consulta */
+        
+        #detalhesMensagem { margin-top: 20px; font-weight: bold; }
+        /* FIM DO CSS IDÊNTICO */
+    </style>
+</head>
+<body onload="inicializarDetalhe()">
+    <div class="top-actions">
+        <h1>Itens Enviados para Detalhe</h1>
+        
+        <div>
+            <button id="btnVoltarIndex" onclick="window.location.href='index.html'">Voltar para Importação (Index)</button>
+            <button id="btnVoltarConsulta" onclick="window.location.href='consulta.html'">Voltar para Consulta</button>
+            <button id="btnExportarItem" onclick="exportarItemExcel()">Exportar Itens para Excel</button>
+            <button id="btnLimparVisualizacao" onclick="limparItemDetalheVisualizacao()">Limpar Todos da Visualização</button> 
+        </div>
+    </div>
+    
+    <p>Abaixo estão os itens enviados. O botão 'Apagar' na linha remove apenas aquele item da lista de visualização.</p>
+
+    <div id="detalhesMensagem"></div>
+
+    <div id="tabelaDetalhesContainer" style="overflow-x: auto;">
+        <table id="tabelaDetalhes">
+            <thead>
+                <tr>
+                    <th>PEDIDO</th><th>ITEM</th><th>CÓDIGO</th><th>DESCRITIVO</th>
+                    <th>QUANTIDADE</th><th>UN</th><th>LOTE</th><th>DATA LAN</th>
+                    <th>NOTA FISCAL</th><th>VALOR</th><th>CC</th><th>ORDEM</th>
+                    <th>PEP</th><th>CRIADO POR</th><th>ACOMPANHAMENTO</th><th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
